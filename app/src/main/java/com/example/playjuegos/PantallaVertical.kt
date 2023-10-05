@@ -74,7 +74,7 @@ fun PantallaVertical(navController: NavController) {
             }
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("About") },
                 modifier = Modifier.width(200.dp),
             ) {
                 Text(text = "About")

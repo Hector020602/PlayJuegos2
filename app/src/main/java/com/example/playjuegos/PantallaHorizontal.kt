@@ -66,7 +66,7 @@ fun PantallaHorizontal(navController: NavController) {
                 }
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate("About") },
                     modifier = Modifier.width(200.dp).padding(20.dp, 0.dp)
                 ) {
                     Text(text = "About")

@@ -31,6 +31,7 @@ class MainActivity : ComponentActivity() {
                         composable("menuNewPlayer") { NewPlayer() }
                         composable("menuPreferences") { Preferences() }
                         composable("MainActivity") { MenuPlayJuegos(navController) }
+                        composable("About") { About() }
                     }
 
                 }

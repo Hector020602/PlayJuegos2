@@ -150,6 +150,7 @@ fun NewPlayer() {
                 contentDescription = "Telefono"
             )
             MyDropDownMenu()
+
         }
         Spacer(modifier = Modifier.size(20.dp))
 
