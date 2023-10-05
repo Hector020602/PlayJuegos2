@@ -33,6 +33,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.playjuegos.ui.theme.NaranjaFuerte
+import java.nio.file.WatchEvent
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -46,8 +47,9 @@ fun menuPlay() {
     var estadoCheck6 by rememberSaveable { mutableStateOf(false) }
     var estadoCheck7 by rememberSaveable { mutableStateOf(false) }
     var context = LocalContext.current
+    val selectedGames = mutableSetOf<String>()
 
-    Column {
+    Column(Modifier.fillMaxSize()) {
         Row(Modifier.padding(8.dp)) {
 
             Image(
@@ -60,7 +62,7 @@ fun menuPlay() {
                 estadoCheck1 = !estadoCheck1
             })
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Angry Birds")
+            Text(text = "Angry Birds", modifier = Modifier.padding(top = 12.dp))
         }
         Row(Modifier.padding(8.dp)) {
             Image(
@@ -73,7 +75,7 @@ fun menuPlay() {
                 estadoCheck2 = !estadoCheck2
             })
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Dragon Fly")
+            Text(text = "Dragon Fly",modifier = Modifier.padding(top = 12.dp))
         }
         Row(Modifier.padding(8.dp)) {
             Image(
@@ -86,7 +88,7 @@ fun menuPlay() {
                 estadoCheck3 = !estadoCheck3
             })
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Hill Climbing Racing")
+            Text(text = "Hill Climbing Racing",modifier = Modifier.padding(top = 12.dp))
         }
         Row(Modifier.padding(8.dp)) {
             Image(
@@ -99,7 +101,7 @@ fun menuPlay() {
                 estadoCheck4 = !estadoCheck4
             })
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Radient Defense")
+            Text(text = "Radient Defense",modifier = Modifier.padding(top = 12.dp))
         }
         Row(Modifier.padding(8.dp)) {
             Image(
@@ -112,7 +114,7 @@ fun menuPlay() {
                 estadoCheck5 = !estadoCheck5
             })
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Pocket Soccer")
+            Text(text = "Pocket Soccer",modifier = Modifier.padding(top = 12.dp))
         }
         Row(Modifier.padding(8.dp)) {
             Image(
@@ -125,7 +127,7 @@ fun menuPlay() {
                 estadoCheck6 = !estadoCheck6
             })
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Ninja Jump")
+            Text(text = "Ninja Jump",modifier = Modifier.padding(top = 12.dp))
         }
         Row(Modifier.padding(8.dp)) {
             Image(
@@ -138,29 +140,40 @@ fun menuPlay() {
                 estadoCheck7 = !estadoCheck7
             })
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Air Control")
+            Text(text = "Air Control",modifier = Modifier.padding(top = 12.dp))
         }
-        FloatingActionButton(modifier = Modifier.padding(16.dp),
-            onClick =  {
-                if (estadoCheck1 && estadoCheck2 && estadoCheck3 && estadoCheck4
-                    && estadoCheck5 && estadoCheck6 && estadoCheck7) {
-                    Toast.makeText(context,"Has seleccionado : ```````````",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                }else {
-                    Toast.makeText(context, "No has seleccionado nada", Toast.LENGTH_LONG)
-                        .show()
+
+    }
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomEnd
+    ) {
+        FloatingActionButton(
+            modifier = Modifier.padding(16.dp),
+            onClick = {
+                if (estadoCheck1) selectedGames.add("Angry Birds") else selectedGames.remove("Angry Birds")
+                if (estadoCheck2) selectedGames.add("Dragon Fly") else selectedGames.remove("Dragon Fly")
+                if (estadoCheck3) selectedGames.add("Hill Climbing Racing") else selectedGames.remove("Hill Climbing Racing")
+                if (estadoCheck4) selectedGames.add("Radiant Defense") else selectedGames.remove("Radiant Defense")
+                if (estadoCheck5) selectedGames.add("Pocket Soccer") else selectedGames.remove("Pocket Soccer")
+                if (estadoCheck6) selectedGames.add("Ninja Jump") else selectedGames.remove("Ninja Jump")
+                if (estadoCheck7) selectedGames.add("Air Control") else selectedGames.remove("Air Control")
+                if (selectedGames.isNotEmpty()){
+                    var gamesText = "Has seleccionado los juegos: "
+                    for (string:String in selectedGames){
+                        gamesText += string
+                    }
+                    Toast.makeText(context, gamesText, Toast.LENGTH_LONG).show()
+                } else{
+                    Toast.makeText(context, "No has seleccionado nada", Toast.LENGTH_LONG).show()
                 }
             }, shape = RoundedCornerShape(50.dp), containerColor = NaranjaFuerte
         ) {
-            Icon(imageVector = Icons.Filled.Check, contentDescription = "Check", tint = Color.Black)
-
-        }
-
+            Icon(imageVector = Icons.Filled.Check, contentDescription = "Check", tint = Color.Black, modifier = Modifier)
 
         }
     }
+}
 
 
 
