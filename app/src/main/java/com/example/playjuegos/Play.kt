@@ -161,7 +161,10 @@ fun menuPlay() {
                 if (selectedGames.isNotEmpty()){
                     var gamesText = "Has seleccionado los juegos: "
                     for (string:String in selectedGames){
-                        gamesText += string
+                        if (string == selectedGames.last()){
+                            gamesText += "$string, "
+                        }
+                        gamesText += "$string "
                     }
                     Toast.makeText(context, gamesText, Toast.LENGTH_LONG).show()
                 } else{
