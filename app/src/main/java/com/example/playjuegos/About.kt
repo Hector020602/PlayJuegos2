@@ -3,6 +3,7 @@ package com.example.playjuegos
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,14 +63,17 @@ fun About() {
                         }
                         .padding(12.dp)
                 ) {
-                    // Imagen
-                    Image(
-                        painter = painterResource(id = userWithImage.imageResId),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(150.dp)
+                    SelectableImage(
+                        image = painterResource(id = userWithImage.imageResId),
+                        isSelected = userWithImage.userName == selectedUser,
+                        onClick = {
+                            selectedUser = if (userWithImage.userName == selectedUser) {
+                                ""
+                            } else {
+                                userWithImage.userName
+                            }
+                        }
                     )
-
                     Spacer(modifier = Modifier.width(20.dp))
                     Text(
                         text = userWithImage.userName,
@@ -82,4 +87,21 @@ fun About() {
             }
         }
     }
+}
+
+@Composable
+fun SelectableImage(image: Painter, isSelected: Boolean, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier.clickable {
+            onClick()
+        }
+    ) {
+        Image(
+            painter = image,
+            contentDescription = null,
+            modifier = Modifier
+                .size(if (isSelected) 350.dp else 150.dp)
+        )
+    }
+
 }
