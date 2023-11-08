@@ -53,21 +53,21 @@ fun PantallaVertical(navController: NavController) {
             )
 
             Button(
-                onClick = { navController.navigate("menuPlay") },
+                onClick = { navController.navigate("Play") },
                 modifier = Modifier.width(200.dp),
             ) {
                 Text(text = "Play")
             }
 
             Button(
-                onClick = { navController.navigate("menuNewPlayer") },
+                onClick = { navController.navigate("NewPlayer") },
                 modifier = Modifier.width(200.dp),
             ) {
                 Text(text = "New Player")
             }
 
             Button(
-                onClick = { navController.navigate("menuPreferences") },
+                onClick = { navController.navigate("Preferences") },
                 modifier = Modifier.width(200.dp),
             ) {
                 Text(text = "Preferences")

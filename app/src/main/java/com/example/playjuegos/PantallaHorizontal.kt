@@ -41,14 +41,14 @@ fun PantallaHorizontal(navController: NavController) {
             )
             Row {
                 Button(
-                    onClick = { navController.navigate("menuPlay") },
+                    onClick = { navController.navigate("Play") },
                     modifier = Modifier.width(200.dp).padding(20.dp, 0.dp)
                 ) {
                     Text(text = "Play")
 
                 }
                 Button(
-                    onClick = { navController.navigate("menuNewPlayer") },
+                    onClick = { navController.navigate("NewPlayer") },
                     modifier = Modifier.width(200.dp).padding(20.dp, 0.dp)
                 ) {
                     Text(text = "New Player")
@@ -59,7 +59,7 @@ fun PantallaHorizontal(navController: NavController) {
             Row {
 
                 Button(
-                    onClick = { navController.navigate("menuPreferencee") },
+                    onClick = { navController.navigate("Preferencee") },
                     modifier = Modifier.width(200.dp).padding(20.dp, 0.dp)
                 ) {
                     Text(text = "Preferences")

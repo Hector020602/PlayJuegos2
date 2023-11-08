@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.dp
 
 data class UserWithImage(val userName: String, val imageResId: Int)
 @Composable
+
+//Nombre e imagen
 fun About() {
     val usersWithImages = listOf(
         UserWithImage("Maria Mata", R.drawable.image1),
@@ -89,6 +91,8 @@ fun About() {
     }
 }
 
+
+//Esto hace que la imagen al seleccionarla se haga mas grande
 @Composable
 fun SelectableImage(image: Painter, isSelected: Boolean, onClick: () -> Unit) {
     Box(

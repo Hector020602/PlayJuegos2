@@ -43,6 +43,7 @@ fun Preferences () {
     var sliderValue by rememberSaveable { mutableStateOf(0f) }
 
 
+    //Aqui tenemos : Texto,RadioButtons,Slider,FilterChip y FAB
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -83,6 +84,7 @@ fun Preferences () {
     }
 }
 
+//Radio Button de cada Juego
 @Composable
 fun MyRadioButton(name :String, onItemSelected:(String)->Unit) {
     Column {Modifier.fillMaxSize()
@@ -117,6 +119,8 @@ fun MyRadioButton(name :String, onItemSelected:(String)->Unit) {
 
     }
 }
+
+//Slider con 9 posiciones
 @Composable
 fun SimpleDiscreteSlider(sliderValue: Float, onValueChange:(Float)->Unit) {
     val range = 0.0f..10.0f
@@ -128,6 +132,8 @@ fun SimpleDiscreteSlider(sliderValue: Float, onValueChange:(Float)->Unit) {
         onValueChange = onValueChange
     )
 }
+
+//FAB que dice lo que hemos seleccionado por pantalla
 @Composable
 fun MyFAB(seleccion: String, context : Context, sliderValue : Float) {
     var sliderValueInt = sliderValue.toInt()
@@ -148,6 +154,8 @@ fun MyFAB(seleccion: String, context : Context, sliderValue : Float) {
 
     }
 }
+
+//En el FilterChip elegimos la plataforma, y muestra cual hemos elegido con un Toast
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyFilterChip(context: Context) {

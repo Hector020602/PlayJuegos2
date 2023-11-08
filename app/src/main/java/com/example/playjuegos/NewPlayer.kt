@@ -173,6 +173,8 @@ fun NewPlayer() {
         Row {
             Modifier.weight(Peso2)
             Spacer(modifier = Modifier.size(120.dp))
+
+            //Al darle al boton no saldra que faltan campos, o cuales son obligatorios
             Button(colors = ButtonDefaults.buttonColors(NaranjaDiferennte), onClick = {
                 if (newPlayerName.isBlank()) {
                     errorName = "*Error nombre obligatorio"

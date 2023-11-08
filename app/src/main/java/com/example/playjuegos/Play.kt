@@ -1,7 +1,6 @@
 package com.example.playjuegos
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -18,9 +17,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,12 +30,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.playjuegos.ui.theme.NaranjaFuerte
-import java.nio.file.WatchEvent
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
 
-fun menuPlay() {
+fun Play() {
     var estadoCheck1 by rememberSaveable { mutableStateOf(false) }
     var estadoCheck2 by rememberSaveable { mutableStateOf(false) }
     var estadoCheck3 by rememberSaveable { mutableStateOf(false) }
@@ -49,6 +45,8 @@ fun menuPlay() {
     var context = LocalContext.current
     val selectedGames = mutableSetOf<String>()
 
+
+    //Columna con 7 filas una para cada juego, cada uno tiene su CheckBox
     Column(Modifier.fillMaxSize()) {
         Row(Modifier.padding(8.dp)) {
 
@@ -148,6 +146,8 @@ fun menuPlay() {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomEnd
     ) {
+
+        //Este es el FAB, muestra que juegos hemos seleccionado en el CheckBox
         FloatingActionButton(
             modifier = Modifier.padding(16.dp),
             onClick = {
@@ -162,9 +162,8 @@ fun menuPlay() {
                     var gamesText = "Has seleccionado los juegos: "
                     for (string:String in selectedGames){
                         if (string == selectedGames.last()){
-                            gamesText += "$string, "
                         }
-                        gamesText += "$string "
+                        gamesText += "$string, "
                     }
                     Toast.makeText(context, gamesText, Toast.LENGTH_LONG).show()
                 } else{

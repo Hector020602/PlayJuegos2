@@ -14,26 +14,24 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.playjuegos.ui.theme.PlayJuegosTheme
-import java.util.prefs.Preferences
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PlayJuegosTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                 ) {
+                    //Navegacion de los primeros botones
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "MainActivity"){
-                        composable("menuPlay") { menuPlay() }
-                        composable("menuNewPlayer") { NewPlayer() }
-                        composable("menuPreferences") { Preferences() }
                         composable("MainActivity") { MenuPlayJuegos(navController) }
+                        composable("Play") { Play() }
+                        composable("NewPlayer") { NewPlayer() }
+                        composable("Preferences") { Preferences() }
                         composable("About") { About() }
                     }
-
                 }
             }
         }
@@ -43,15 +41,14 @@ class MainActivity : ComponentActivity() {
 //@Preview(showBackground = true)
 @Composable
 fun MenuPlayJuegos(navController: NavController) {
-    //PlayJuegosTheme {
-        val configuration = LocalConfiguration.current
-        when (configuration.orientation) {
-            Configuration.ORIENTATION_LANDSCAPE -> {
-                PantallaHorizontal(navController)
-            }
-            else -> {
-                PantallaVertical(navController)
-            }
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_LANDSCAPE -> {
+            PantallaHorizontal(navController)
+        }
+
+        else -> {
+            PantallaVertical(navController)
         }
     }
-//}
+}
